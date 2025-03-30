@@ -43,6 +43,15 @@ except Exception as e:
 # Initialize MongoDB
 mongo = PyMongo(app)
 
+prompt_template = ChatPromptTemplate.from_messages([
+    ("system", "You are a helpful assistant."),
+    ("user", "Hello, how are you?")
+])
+prompt = prompt_template.invoke({})
+response = model.invoke(prompt)
+print("Test Response:", response)
+
+
 # Session configuration
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
