@@ -10,6 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 import urllib.parse
 
 # Load environment variables
