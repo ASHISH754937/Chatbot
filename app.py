@@ -153,7 +153,7 @@ def logout():
     flash("Logged out successfully!", "success")
     return redirect(url_for("login"))
 
-if __name__ == "__main__":
+
     
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))  # Default Render port is 10000
