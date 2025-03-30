@@ -40,25 +40,6 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
 # Initialize MongoDB
 mongo = PyMongo(app)
 
-# Test MongoDB Connection
-try:
-    mongo.db.users.find_one()
-    print("✅ MongoDB Connection Successful")
-except Exception as e:
-    print("❌ MongoDB Connection Failed:", e)
-
-# Test Mistral AI Model
-try:
-    prompt_template = ChatPromptTemplate.from_messages([
-        ("system", "You are a helpful assistant."),
-        ("user", "Hello, how are you?")
-    ])
-    prompt = prompt_template.invoke({})
-    response = model.invoke(prompt)
-    print("✅ Test Response from Mistral:", response)
-except Exception as e:
-    print("❌ Mistral AI Model Initialization Failed:", e)
-
 # Session configuration
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
