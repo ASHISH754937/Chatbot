@@ -24,6 +24,16 @@ password = urllib.parse.quote_plus("Rajeev@1")
 app.config["MONGO_URI"] = f"mongodb+srv://rajeev22joshi:{password}@bot.spvioop.mongodb.net/BoT?retryWrites=true&w=majority&appName=BoT"
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
 
+
+uri = f"mongodb+srv://rajeev22joshi:{urllib.parse.quote_plus(password)}@bot.spvioop.mongodb.net/BoT?retryWrites=true&w=majority&appName=BoT"
+
+try:
+    client = MongoClient(uri)
+    client.server_info()  # Ping the database
+    print("✅ MongoDB connection successful!")
+except Exception as e:
+    print("❌ MongoDB connection failed:", e)
+
 # Initialize MongoDB
 mongo = PyMongo(app)
 
