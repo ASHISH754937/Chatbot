@@ -10,58 +10,63 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
-from pymongo import MongoClient
 import urllib.parse
 
 # Load environment variables
 load_dotenv()
 
-ChatMistralAI.model_rebuild()
+# Ensure API Key is Loaded
+mistral_api_key = os.getenv("MISTRAL_API_KEY")
+if not mistral_api_key:
+    raise ValueError("MISTRAL API Key is missing! Check your environment variables.")
+
+# Initialize Mistral AI Model
+model = ChatMistralAI(model="mistral-large-latest", api_key=mistral_api_key)
+
 # Initialize Flask app
 app = Flask(__name__)
 
 # Encode MongoDB password safely
-password = urllib.parse.quote_plus("Rajeev@1")  
+password = urllib.parse.quote_plus("Rajeev@1")  # Ensure password is properly encoded
+username = "rajeev22joshi"  
+
 app.config["MONGO_URI"] = (
-    f"mongodb+srv://rajeev22joshi:{password}@bot.spvioop.mongodb.net/BoT"
+    f"mongodb+srv://{username}:{password}@bot.spvioop.mongodb.net/BoT"
     "?retryWrites=true&w=majority&appName=BoT"
-    "&tls=true&tlsAllowInvalidCertificates=true"  # <-- Add these parameters
 )
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
 
-
-uri = f"mongodb+srv://rajeev22joshi:{urllib.parse.quote_plus(password)}@bot.spvioop.mongodb.net/BoT?retryWrites=true&w=majority&appName=BoT"
-
-try:
-    client = MongoClient(uri)
-    client.server_info()  # Ping the database
-    print("✅ MongoDB connection successful!")
-except Exception as e:
-    print("❌ MongoDB connection failed:", e)
-
 # Initialize MongoDB
 mongo = PyMongo(app)
 
-prompt_template = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful assistant."),
-    ("user", "Hello, how are you?")
-])
-prompt = prompt_template.invoke({})
-response = model.invoke(prompt)
-print("Test Response:", response)
+# Test MongoDB Connection
+try:
+    mongo.db.users.find_one()
+    print("✅ MongoDB Connection Successful")
+except Exception as e:
+    print("❌ MongoDB Connection Failed:", e)
 
+# Test Mistral AI Model
+try:
+    prompt_template = ChatPromptTemplate.from_messages([
+        ("system", "You are a helpful assistant."),
+        ("user", "Hello, how are you?")
+    ])
+    prompt = prompt_template.invoke({})
+    response = model.invoke(prompt)
+    print("✅ Test Response from Mistral:", response)
+except Exception as e:
+    print("❌ Mistral AI Model Initialization Failed:", e)
 
 # Session configuration
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# Load Mistral API
-mistral_api_key = os.getenv("MISTRAL_API_KEY")                                                     
-model = ChatMistralAI(model="mistral-large-latest")                                                 
-
+# Chatbot Workflow
 workflow = StateGraph(state_schema=MessagesState)
+
 def call_model(state: MessagesState):
     prompt_template = ChatPromptTemplate.from_messages([
         ("system", "You are a helpful assistant. Kindly help the user."),
@@ -156,7 +161,6 @@ def chatbot():
                 response_text += chunk.content
                 yield chunk.content  
     return Response(stream_response(), content_type="text/event-stream")
-
 
 @app.route("/contact")
 def contact():
