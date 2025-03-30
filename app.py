@@ -22,7 +22,12 @@ app = Flask(__name__)
 
 # Encode MongoDB password safely
 password = urllib.parse.quote_plus("Rajeev@1")  
-app.config["MONGO_URI"] = f"mongodb+srv://rajeev22joshi:{password}@bot.spvioop.mongodb.net/BoT?retryWrites=true&w=majority&appName=BoT"
+app.config["MONGO_URI"] = (
+    f"mongodb+srv://rajeev22joshi:{password}@bot.spvioop.mongodb.net/BoT"
+    "?retryWrites=true&w=majority&appName=BoT"
+    "&tls=true&tlsAllowInvalidCertificates=true"  # <-- Add these parameters
+)
+
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
 
 
