@@ -1,0 +1,43 @@
+# Virtual environment
+env/
+venv/
+venv1/
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and database files
+logs/
+*.log
+instance/
+*.sqlite3
+*.db
+*.bak  # Backup files
+
+# Environment variables
+.env
+*.env
+
+# Compiled assets
+staticfiles/
+node_modules/
+dist/
+build/
+
+# Flask session files (if using filesystem-based sessions)
+flask_session/
+
+# Coverage reports (if running tests)
+.coverage
+htmlcov/

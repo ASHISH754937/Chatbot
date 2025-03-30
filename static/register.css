@@ -1,0 +1,235 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding-bottom: 40px; /* Prevents content from overlapping with the bottom ribbon */
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 90%;
+    overflow: hidden;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+/* Form Section */
+.form-container {
+    padding: 2rem;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo Inside the Form */
+.nav-logo {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #333;
+    letter-spacing: 2px;
+    margin-bottom: 10px; /* Space below logo */
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-in-out, float 3s ease-in-out infinite;
+}
+
+/* Form Elements */
+.form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+    background: #000;
+}
+
+.form-container a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #0077b5;
+}
+
+/* Image Section */
+.image-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f9;
+    padding: 1rem;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: .5px solid rgb(0, 0, 0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+        text-align: center;
+    }
+    
+    .form-container, .image-container {
+        width: 100%;
+    }
+
+    .nav-logo {
+        font-size: 24px; /* Slightly smaller logo on mobile */
+        margin-bottom: 15px;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .form-container input, .form-container button {
+        padding: 12px;
+    }
+}
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column;
+        width: 95%;  /* Adjust width for smaller screens */
+        max-width: 100%; /* Use full width */
+        overflow: hidden;
+        border: 2px solid black; /* Slightly thinner border */
+        
+    }
+
+    .form-container, .image-container {
+        width: 100%;
+        padding: 0.4rem; /* Reduce padding to save space */
+    }
+
+    .form-container input, 
+    .form-container button {
+        padding: 8px; /* Reduce padding for small screens */
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .nav-logo {
+        font-size: 22px; /* Make logo a bit smaller */
+    }
+
+    .bottom-ribbon {
+        font-size: 12px; /* Reduce footer font size */
+        padding: 5px 0;
+    }
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.nav-logo:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Bottom Ribbon */
+.bottom-ribbon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+/* Extra Spacing */
+.bottom-ribbon p {
+    letter-spacing: 0.5px; /* Adds spacing between letters */
+    word-spacing: 5px; /* Adds spacing between words */
+}
+
+/* Adjust bottom ribbon for smaller screens */
+@media (max-width: 480px) {
+    .bottom-ribbon {
+        font-size: 12px; /* Smaller text for small devices */
+        padding: 8px 0;
+    }
+}
+
+#flash-messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+}
+
+.flash-message {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    animation: fadeOut 4s ease-in-out forwards;
+}
+
+.success { background-color: #4CAF50; }  /* Green */
+.error { background-color: #F44336; }   /* Red */
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

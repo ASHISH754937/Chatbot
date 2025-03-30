@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        <div class="form-container">
+            <div class="nav-logo">ConvoClarity</div>
+            <h2>Sign Up</h2>
+            <form action="{{ url_for('register') }}" method="post">
+                {{ form.hidden_tag() }}
+                <div>{{ form.username.label }} {{ form.username }}</div>  <!-- ✅ Fixed from 'form.name' -->
+                <div>{{ form.email.label }} {{ form.email }}</div>
+                <div>{{ form.password.label }} {{ form.password }}</div>
+                <div>{{ form.confirm_password.label }} {{ form.confirm_password }}</div>
+
+                <button type="submit">Register</button>
+            </form>
+            <a href="{{ url_for('login') }}">I am already a member</a>
+        </div>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/register-modified.jpg') }}" alt="Signup Illustration">
+        </div>
+    </div>
+    <div class="bottom-ribbon">
+        <p>ConvoClarity ™ - Created by Rajeev Ashish Ankit Saanvi Jasleen</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #f0f0f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+/* Navbar */
+/* Navbar Styles */
+.navbar {
+    width: 100%;
+    background-color: #ffffff;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed; /* Change to sticky or remove for normal navbar */
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Animation */
+.nav-logo {
+    font-weight: bold;
+    font-size: 30px;
+    color: #333;
+    letter-spacing: 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease-in-out, float 3s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.nav-logo:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Navbar Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #333;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Hover Effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 50%;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: #000;
+}
+
+/* Active Page Styling */
+
+
+/* Chat Container */
+#chat-container {
+    width: 100vw;
+    max-width: 1400px; /* Prevents too wide containers on large screens */
+    min-height: 85%; /* Expands dynamically */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 70px;
+    
+}
+
+/* Chat Box */
+#chat-box {
+    height: 70vh;
+    overflow-y: auto; /* Allow only vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    white-space: pre-wrap;
+    word-wrap: break-word; /* Ensure long words wrap */
+    background-color: #f0f0f5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Messages */
+.message {
+    margin: 10px 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: inline-block;
+    white-space: pre-wrap; /* Ensures proper spacing & formatting */
+}
+
+.user {
+    background: #000000;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+    display: inline-block; /* Prevents background from cutting off */
+    word-break: break-word; /* Ensures the text does not overflow */
+    max-width: 75%; /* Limits width to avoid overflow */
+}
+
+.bot {
+    background: #000000;
+    color: white;
+    align-self: flex-start;
+    text-align: left;
+    display: inline-block;
+    word-break: break-word;
+    max-width: 75%;
+    white-space: pre-wrap; /* Preserves code formatting */
+ 
+}
+/* Input Field */
+.input-container {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background: white;
+}
+
+.input-container input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid black;
+}
+
+.input-container button 
+{
+      margin-left: 1px;
+      appearance: button;
+      background-color: #000;
+      background-image: none;
+      border: 1px solid #000;
+      border-radius: 4px;
+      box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0 5px 10px 0;
+      overflow: visible;
+      padding: 12px 40px;
+      text-align: center;
+      text-transform: none;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      vertical-align: middle;
+      white-space: nowrap;
+}
+    
+.input-container button :focus 
+{
+    text-decoration: none;
+}
+      
+.input-container button :hover 
+{
+        text-decoration: none;
+}
+.input-container button :active 
+{
+        box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+        outline: 0;
+}
+.input-container button :not([disabled]):active 
+{
+        box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+        transform: translate(2px, 2px);
+}
+@media (min-width: 768px) 
+{
+        .input-container button  
+        {
+            margin-left:15px;
+          padding: 12px 50px;
+        }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #chat-container {
+        width: 100%;
+        height: 75vh;
+    }
+
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+        gap: 10px;
+    }
+}
+
+
+/* Hamburger Menu */
+.menu-icon {
+    display: none;  /* Hide by default on larger screens */
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Show menu icon on small screens */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;  /* Hide links by default */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;  /* Show menu when active */
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
+
+#flash-messages {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+}
+
+.flash-message {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    animation: fadeOut 4s ease-in-out forwards;
+}
+
+.success { background-color: #4CAF50; }  /* Green */
+.error { background-color: #F44336; }   /* Red */
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@media(max-width: 480px)
+{
+    .input-container{
+        padding: 5px;
+        gap: 5px;
+    }
+}
