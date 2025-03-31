@@ -145,7 +145,7 @@ def chatbot():
 
 @app.route("/contact")
 def contact():
-    return redirect("https://rajeevs-portfolio-ochre.vercel.app")
+    return redirect("https://rajeevs-portfolio-six.vercel.app")
 
 @app.route("/logout")
 def logout():
