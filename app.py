@@ -20,14 +20,14 @@ mistral_api_key = os.getenv("MISTRAL_API_KEY")
 if not mistral_api_key:
     raise ValueError("MISTRAL API Key is missing! Check your environment variables.")
 
-# Initialize Mistral AI Model
+# Mistral AI Model
 model = ChatMistralAI(model="mistral-large-latest", api_key=mistral_api_key)
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Encode MongoDB password safely
-password = urllib.parse.quote_plus("Rajeev@1")  # Ensure password is properly encoded
+password = urllib.parse.quote_plus("Rajeev@1")  #  password is properly encoded
 username = "rajeev22joshi"  
 
 app.config["MONGO_URI"] = (
@@ -37,7 +37,7 @@ app.config["MONGO_URI"] = (
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
 
-# Initialize MongoDB
+# Initializing MongoDB
 mongo = PyMongo(app)
 
 # Session configuration
