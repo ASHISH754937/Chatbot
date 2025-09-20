@@ -27,12 +27,12 @@ model = ChatMistralAI(model="mistral-large-latest", api_key=mistral_api_key)
 app = Flask(__name__)
 
 # Encode MongoDB password safely
-password = urllib.parse.quote_plus("Rajeev@1")  #  password is properly encoded
-username = "rajeev22joshi"  
+password = urllib.parse.quote_plus("PvIhxaDXpbvDRBR0")  #  password is properly encoded
+username = "ashishkumar7549375293_db_user"  
 
 app.config["MONGO_URI"] = (
-    f"mongodb+srv://{username}:{password}@bot.spvioop.mongodb.net/BoT"
-    "?retryWrites=true&w=majority&appName=BoT"
+    f"mongodb+srv://{username}:{password}@cluster0.w990u18.mongodb.net/"
+    "?retryWrites=true&w=majority&appName=Cluster0"
 )
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "fallback_secret")
